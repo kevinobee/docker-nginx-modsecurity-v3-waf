@@ -18,9 +18,9 @@ make install
 
 # Download the NGINX Connector for ModSecurity and Compile It as a Dynamic Module + Headers More
 cd /
-wget http://nginx.org/download/nginx-1.15.5.tar.gz
-tar xvzf nginx-1.15.5.tar.gz
-cd ../nginx-1.15.5
+wget http://nginx.org/download/nginx-1.21.1.tar.gz
+tar xvzf nginx-1.21.1.tar.gz
+cd ../nginx-1.21.1
 # Download the NGINX Connector for ModSecurity and Compile It as a Dynamic Module
 git clone --depth 1 https://github.com/SpiderLabs/ModSecurity-nginx.git
 #add headers-more

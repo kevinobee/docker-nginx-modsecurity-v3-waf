@@ -1,4 +1,4 @@
-FROM nginx:1.15.5
+FROM nginx:1.21.1
 MAINTAINER Jakub Kuchar
 
 ADD build.sh /build.sh
