@@ -1,0 +1,31 @@
+name: ModSecurity WAF Checks
+
+on:
+
+  workflow_dispatch:
+
+jobs:
+
+  scan:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Start Docker
+        run: |
+          docker-compose up -d
+
+      - name: Test Demo App is available
+        run: |
+          curl 'http://localhost/' | grep 'Demo App'
+          curl -d "lastname=Mouse" -H "Content-Type: application/x-www-form-urlencoded" -X POST --write-out "%{http_code}\n" --silent --output /dev/null 'http://localhost' | grep 200
+
+      - name: Test Waf is blocking XSS
+        run: |
+          curl -d "lastname=Mouse<script" -H "Content-Type: application/x-www-form-urlencoded" -X POST --write-out "%{http_code}\n" --silent --output /dev/null 'http://localhost' | grep 403
+
+      - name: Stop Docker
+        run: docker-compose down
