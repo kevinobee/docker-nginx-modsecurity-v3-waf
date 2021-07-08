@@ -14,9 +14,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Build Docker images
+        run: |
+          docker-compose build
+          
       - name: Start Docker
         run: |
           docker-compose up -d
+          sleep 3s
+          docker ps
 
       - name: Test Demo App is available
         run: |
