@@ -18,7 +18,7 @@ on:
 
 jobs:
 
-  scan:
+  build:
 
     runs-on: ubuntu-latest
 
@@ -29,7 +29,14 @@ jobs:
       - name: Build Docker images
         run: |
           docker-compose build
-          
+
+  test:
+
+    needs: [build]
+    runs-on: ubuntu-latest
+
+    steps:
+
       - name: Start Docker
         run: |
           docker-compose up -d
