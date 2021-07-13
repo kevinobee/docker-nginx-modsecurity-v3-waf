@@ -1,8 +1,3 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
 name: Create and publish a Docker image
 
 on:
@@ -14,7 +9,6 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  # IMAGE_NAME: kevinobee/nginx-modsecurity
 
 jobs:
   build-and-push-image:
@@ -45,7 +39,6 @@ jobs:
         with:
           context: .
           file: waf/Dockerfile
-          push: false
-          # push: ${{ github.event_name != 'pull_request' }}
+          push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
