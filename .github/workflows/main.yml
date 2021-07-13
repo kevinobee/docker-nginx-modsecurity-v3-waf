@@ -2,6 +2,18 @@ name: ModSecurity WAF Checks
 
 on:
 
+  push:
+    branches: [master]
+    paths:
+      - 'waf'
+      - '!waf/log/*'
+
+  pull_request:
+    branches: [master]
+    paths:
+      - 'waf'
+      - '!waf/log/*'
+
   workflow_dispatch:
 
 jobs:
